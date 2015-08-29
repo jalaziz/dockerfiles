@@ -1,5 +1,5 @@
 # Inspired by https://github.com/voxxit/dockerfiles/blob/master/vault/Dockerfile
-FROM alpine:edge
+FROM jalaziz/base:alpine
 
 ENV VAULT_VERSION 0.2.0
 

@@ -1,5 +1,5 @@
 # Inspired by https://github.com/voxxit/dockerfiles/blob/master/consul/Dockerfile
-FROM alpine:edge
+FROM jalaziz/base:alpine
 
 ENV CONSUL_VERSION 0.5.2
 
