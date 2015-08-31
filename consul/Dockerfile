@@ -14,7 +14,7 @@ RUN  apk add -U make go git gcc musl-dev openssl-dev
   && wget https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_web_ui.zip \
   && unzip ${CONSUL_VERSION}_web_ui.zip \
   && mv dist /ui \
-  && rm -f ${CONSUL_VERSION}_web_ui.zip
+  && rm -f ${CONSUL_VERSION}_web_ui.zip \
   && apk del make go git gcc musl-dev openssl-dev \
   && rm -rf /var/cache/apk/*
 
