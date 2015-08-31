@@ -3,21 +3,19 @@ FROM jalaziz/base:alpine
 
 ENV CONSUL_VERSION 0.5.2
 
-RUN  apk add -U bash make go git gcc musl-dev openssl-dev \
-  && export GOPATH=/go \
-  && go get -u -v github.com/hashicorp/consul \
-  && cd /go/src/github.com/hashicorp/consul \
-  && git checkout v${CONSUL_VERSION} \
-  && make \
-  && mv bin/consul /usr/local/bin/ \
-  && rm -rf /go \
-  && cd /tmp \
+RUN  wget https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk -O /tmp/glibc-2.21-r2.apk \
+  && apk add --allow-untrusted /tmp/glibc-2.21-r2.apk \
+  && wget https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-bin-2.21-r2.apk -O /tmp/glibc-bin-2.21-r2.apk \
+  && apk add --allow-untrusted /tmp/glibc-bin-2.21-r2.apk \
+  && rm -rf /tmp/glibc* \
+  && wget https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_linux_amd64.zip \
+  && unzip ${CONSUL_VERSION}_linux_amd64.zip \
+  && mv consul /usr/local/bin/ \
+  && rm -f ${CONSUL_VERSION}_linux_amd64.zip \
   && wget https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_web_ui.zip \
   && unzip ${CONSUL_VERSION}_web_ui.zip \
   && mv dist /ui \
-  && rm -f ${CONSUL_VERSION}_web_ui.zip \
-  && apk del bash make go git gcc musl-dev openssl-dev \
-  && rm -rf /var/cache/apk/*
+  && rm -f ${CONSUL_VERSION}_web_ui.zip
 
 ENV GOMAXPROCS 2
 
