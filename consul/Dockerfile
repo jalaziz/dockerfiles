@@ -3,14 +3,20 @@ FROM jalaziz/base:alpine
 
 ENV CONSUL_VERSION 0.5.2
 
-RUN  wget https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_linux_amd64.zip \
-  && unzip ${CONSUL_VERSION}_linux_amd64.zip \
-  && mv consul /usr/local/bin/ \
-  && rm -f ${CONSUL_VERSION}_linux_amd64.zip \
+RUN  apk add -U make go git gcc musl-dev openssl-dev
+  && export GOPATH=/go \
+  && go get -u -v github.com/hashicorp/consul \
+  && cd /go/src/github.com/hashicorp/consul \
+  && git checkout v${CONSUL_VERSION} \
+  && make \
+  && mv bin/consul /usr/local/bin/ \
+  && rm -rf /go \
   && wget https://dl.bintray.com/mitchellh/consul/${CONSUL_VERSION}_web_ui.zip \
   && unzip ${CONSUL_VERSION}_web_ui.zip \
   && mv dist /ui \
   && rm -f ${CONSUL_VERSION}_web_ui.zip
+  && apk del make go git gcc musl-dev openssl-dev \
+  && rm -rf /var/cache/apk/*
 
 ENV GOMAXPROCS 2
 
