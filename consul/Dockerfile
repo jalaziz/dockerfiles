@@ -3,7 +3,7 @@ FROM jalaziz/base:alpine
 
 ENV CONSUL_VERSION 0.5.2
 
-RUN  apk add -U make go git gcc musl-dev openssl-dev
+RUN  apk add -U make go git gcc musl-dev openssl-dev \
   && export GOPATH=/go \
   && go get -u -v github.com/hashicorp/consul \
   && cd /go/src/github.com/hashicorp/consul \
