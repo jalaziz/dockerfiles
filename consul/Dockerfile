@@ -16,6 +16,7 @@ RUN  wget https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts
   && unzip ${CONSUL_VERSION}_web_ui.zip \
   && mv dist /ui \
   && rm -f ${CONSUL_VERSION}_web_ui.zip
+  && rm -rf /var/cache/apk/*
 
 ENV GOMAXPROCS 2
 
