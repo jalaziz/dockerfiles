@@ -3,7 +3,7 @@ FROM jalaziz/base:alpine
 
 ENV VAULT_VERSION 0.3.0
 
-RUN  wget https://dl.bintray.com/mitchellh/vault/vault_${VAULT_VERSION}_linux_amd64.zip \
+RUN  wget -q https://dl.bintray.com/mitchellh/vault/vault_${VAULT_VERSION}_linux_amd64.zip \
   && unzip vault_${VAULT_VERSION}_linux_amd64.zip \
   && mv vault /usr/local/bin/ \
   && rm -f vault_${VAULT_VERSION}_linux_amd64.zip
