@@ -1,7 +1,7 @@
 # Inspired by https://github.com/voxxit/dockerfiles/blob/master/vault/Dockerfile
 FROM jalaziz/base:alpine
 
-ENV VAULT_VERSION 0.2.0
+ENV VAULT_VERSION 0.3.0
 
 RUN  wget https://dl.bintray.com/mitchellh/vault/vault_${VAULT_VERSION}_linux_amd64.zip \
   && unzip vault_${VAULT_VERSION}_linux_amd64.zip \
