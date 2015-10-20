@@ -34,7 +34,7 @@ RUN  apk add --update build-base pcre-dev openssl-dev zlib-dev luajit-dev linux-
     --with-http_ssl_module \
     --with-http_stub_status_module \
     --with-http_gzip_static_module \
-    --with-http_spdy_module \
+    --with-http_v2_module \
     --with-http_realip_module \
     --with-http_addition_module \
     --with-http_sub_module \
