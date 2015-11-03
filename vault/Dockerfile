@@ -1,7 +1,7 @@
 # Inspired by https://github.com/voxxit/dockerfiles/blob/master/vault/Dockerfile
 FROM jalaziz/base:alpine
 
-ENV VAULT_VERSION 0.3.0
+ENV VAULT_VERSION 0.3.1
 
 RUN  apk update \
   && wget -q https://circle-artifacts.com/gh/andyshinn/alpine-pkg-glibc/6/artifacts/0/home/ubuntu/alpine-pkg-glibc/packages/x86_64/glibc-2.21-r2.apk -O /tmp/glibc-2.21-r2.apk \
