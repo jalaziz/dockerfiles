@@ -1,11 +1,11 @@
 FROM jalaziz/base:alpine
 
-ENV CONSUL_TEMPLATE_VERSION 0.10.0
+ENV CONSUL_TEMPLATE_VERSION 0.12.2
 
-RUN  wget -qO- https://github.com/hashicorp/consul-template/releases/download/v${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.tar.gz \
-      | tar -C /tmp -xz \
-  && mv /tmp/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64/consul-template /usr/local/bin \
-  && rm -rf /tmp/*
+RUN  wget -q https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip \
+  && unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip \
+  && mv consul-template /usr/local/bin \
+  && rm -f consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
 
 VOLUME [ "/config", "/templates" ]
 

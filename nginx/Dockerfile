@@ -1,9 +1,9 @@
 FROM jalaziz/base:alpine
 
-ENV NGINX_VERSION 1.9.6
+ENV NGINX_VERSION 1.9.10
 ENV NGINX_RTMP_VERSION 1.1.7
 ENV NGINX_DEVEL_KIT_VERSION 0.2.19
-ENV NGINX_LUA_VERSION 0.9.16
+ENV NGINX_LUA_VERSION 0.10.0
 
 RUN  apk add --update build-base pcre-dev openssl-dev zlib-dev luajit-dev linux-headers \
   && mkdir -p /tmp/src \
@@ -59,6 +59,7 @@ RUN  apk add --update build-base pcre-dev openssl-dev zlib-dev luajit-dev linux-
   && rm -rf /var/cache/apk/* /tmp/*
 
 RUN addgroup -S nginx \
+  && addgroup -S www-data || true \
   && adduser -S -G nginx -H -h /var/www/localhost/htdocs -s /sbin/nologin -D nginx \
   && addgroup nginx www-data \
   && chmod 700 /var/log/nginx \
@@ -75,6 +76,9 @@ RUN addgroup -S nginx \
 # forward request and error logs to docker log collector
 RUN  ln -sf /dev/stdout /var/log/nginx/access.log \
   && ln -sf /dev/stderr /var/log/nginx/error.log
+
+# commented out since it shouldn't be shared by everyone
+# RUN openssl dhparam -out /etc/nginx/dhparams.pem 2048
 
 COPY conf /etc/nginx
 

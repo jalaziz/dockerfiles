@@ -1,8 +1,8 @@
 FROM jalaziz/base:alpine
 
-ENV OPENRESTY_VERSION 1.9.3.1
+ENV OPENRESTY_VERSION 1.9.7.2
 ENV NGINX_RTMP_VERSION 1.1.7
-ENV LUAROCKS_VERSION 2.2.2
+ENV LUAROCKS_VERSION 2.3.0
 
 RUN  apk add --update build-base perl pcre-dev openssl-dev zlib-dev \
      ncurses-dev readline-dev linux-headers \
@@ -32,7 +32,7 @@ RUN  apk add --update build-base perl pcre-dev openssl-dev zlib-dev \
     --with-http_dav_module \
     --with-http_stub_status_module \
     --with-http_gzip_static_module \
-    --with-http_spdy_module \
+    --with-http_v2_module \
     --with-http_realip_module \
     --with-http_addition_module \
     --with-http_sub_module \
@@ -54,7 +54,7 @@ RUN  apk add --update build-base perl pcre-dev openssl-dev zlib-dev \
   && cd ../luarocks-${LUAROCKS_VERSION} \
   && ./configure --prefix=/usr/share/openresty/luajit \
     --with-lua=/usr/share/openresty/luajit/ \
-    --lua-suffix=jit-2.1.0-alpha \
+    --lua-suffix=jit \
     --with-lua-include=/usr/share/openresty/luajit/include/luajit-2.1 \
   && make build \
   && make install \
@@ -63,6 +63,7 @@ RUN  apk add --update build-base perl pcre-dev openssl-dev zlib-dev \
   && rm -rf /var/cache/apk/* /tmp/* ~/.cache
 
 RUN addgroup -S nginx \
+  && addgroup -S www-data || true \
   && adduser -S -G nginx -H -h /var/www/localhost/htdocs -s /sbin/nologin -D nginx \
   && addgroup nginx www-data \
   && chmod 700 /var/log/nginx \
