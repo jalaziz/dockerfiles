@@ -8,10 +8,10 @@ RUN  apk add --update build-base perl pcre-dev openssl-dev zlib-dev \
      ncurses-dev readline-dev linux-headers \
   && mkdir -p /tmp/src \
   && cd /tmp/src \
-  && wget -qO- https://openresty.org/download/ngx_openresty-${OPENRESTY_VERSION}.tar.gz | tar -xz \
+  && wget -qO- https://openresty.org/download/openresty-${OPENRESTY_VERSION}.tar.gz | tar -xz \
   && wget -qO- https://github.com/arut/nginx-rtmp-module/archive/v${NGINX_RTMP_VERSION}.tar.gz | tar -xz \
   && wget -qO- http://keplerproject.github.io/luarocks/releases/luarocks-${LUAROCKS_VERSION}.tar.gz | tar -xz \
-  && cd ngx_openresty-${OPENRESTY_VERSION} \
+  && cd openresty-${OPENRESTY_VERSION} \
   && ./configure --prefix=/usr/share/openresty \
     --sbin-path=/usr/sbin/nginx \
     --conf-path=/etc/nginx/nginx.conf \
