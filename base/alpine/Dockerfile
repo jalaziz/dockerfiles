@@ -1,6 +1,7 @@
 FROM alpine:edge
 
-RUN apk add --update curl wget ca-certificates openssl \
+RUN apk upgrade --update \
+  && apk add curl wget ca-certificates openssl \
   && apk upgrade \
   && rm -rf /var/cache/apk/*
 
