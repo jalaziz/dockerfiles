@@ -1,9 +1,9 @@
 FROM jalaziz/base:alpine
 
-ENV NGINX_VERSION 1.9.10
+ENV NGINX_VERSION 1.9.13
 ENV NGINX_RTMP_VERSION 1.1.7
 ENV NGINX_DEVEL_KIT_VERSION 0.2.19
-ENV NGINX_LUA_VERSION 0.10.0
+ENV NGINX_LUA_VERSION 0.10.2
 
 RUN  apk add --update build-base pcre-dev openssl-dev zlib-dev luajit-dev linux-headers \
   && mkdir -p /tmp/src \

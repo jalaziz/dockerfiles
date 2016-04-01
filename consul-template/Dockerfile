@@ -1,6 +1,6 @@
 FROM jalaziz/base:alpine
 
-ENV CONSUL_TEMPLATE_VERSION 0.12.2
+ENV CONSUL_TEMPLATE_VERSION 0.14.0
 
 RUN  wget -q https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip \
   && unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip \

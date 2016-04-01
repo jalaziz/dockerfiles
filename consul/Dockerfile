@@ -1,7 +1,7 @@
 # Inspired by https://github.com/voxxit/dockerfiles/blob/master/consul/Dockerfile
 FROM jalaziz/base:alpine
 
-ENV CONSUL_VERSION 0.6.3
+ENV CONSUL_VERSION 0.6.4
 
 RUN wget -q https://releases.hashicorp.com/consul/${CONSUL_VERSION}/consul_${CONSUL_VERSION}_linux_amd64.zip \
   && unzip consul_${CONSUL_VERSION}_linux_amd64.zip \
