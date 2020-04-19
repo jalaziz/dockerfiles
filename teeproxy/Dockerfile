@@ -1,7 +1,6 @@
 FROM jalaziz/base:alpine
 
-RUN apk add --update go g++ \
-  && rm -rf /var/cache/apk/*
+RUN apk add --no-cache go g++
 
 RUN wget -qO- https://github.com/chrislusf/teeproxy/archive/master.tar.gz | tar -xzC /tmp \
   && cd /tmp/teeproxy-master && go build \
